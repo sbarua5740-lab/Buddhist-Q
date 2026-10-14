@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ত্রিপিটক সার্চ | পবিত্র ত্রিপিটক থেকে উত্তর</title>
+  <meta name="description" content="বৌদ্ধ ধর্মের যেকোনো প্রশ্নের উত্তর ত্রিপিটক থেকে রেফারেন্সসহ শুদ্ধ বাংলায় খুঁজুন।" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c45c26;
+      --primary-dark: #9a3f12;
+      --accent: #f4c430;
+      --bg: #faf6f1;
+      --card: #ffffff;
+      --text: #2c1810;
+      --muted: #6b4f3a;
+      --border: #e8d9c8;
+      --success: #2e7d32;
+      --danger: #c62828;
+    }
+
+    [data-theme="dark"] {
+      --bg: #1a120b;
+      --card: #2a1f15;
+      --text: #f5e6d3;
+      --muted: #c9a88a;
+      --border: #3d2e22;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0 30px;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .search-box {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .search-input-wrap {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    #query {
+      flex: 1;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    #query:focus {
+      border-color: var(--primary);
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 14px 24px;
+      font-size: 1.05rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .quick-links button {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+    }
+
+    .quick-links button:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .api-section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .api-section label {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .api-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #apiKey {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .api-hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .api-hint a {
+      color: var(--primary);
+    }
+
+    .results {
+      display: none;
+    }
+
+    .results.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+
+    .answer-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .answer-content strong {
+      color: var(--primary);
+    }
+
+    .link-list {
+      list-style: none;
+    }
+
+    .link-list li {
+      margin-bottom: 8px;
+    }
+
+    .link-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .prompt-box {
+      background: #fff8e7;
+      border: 1px dashed var(--primary);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-top: 10px;
+      position: relative;
+    }
+
+    [data-theme="dark"] .prompt-box {
+      background: #3d2e1a;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .resources {
+      margin-top: 40px;
+    }
+
+    .resources h2 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .resource-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.2s;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .resource-card a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .resource-card span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error {
+      color: var(--danger);
+      background: #ffebee;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    [data-theme="dark"] .error {
+      background: #3d1f1f;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .status-badge.on {
+      background: #e8f5e9;
+      color: var(--success);
+    }
+
+    .status-badge.off {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
+    [data-theme="dark"] .status-badge.on {
+      background: #1b3a1f;
+    }
+
+    [data-theme="dark"] .status-badge.off {
+      background: #3d2e1a;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .search-input-wrap { flex-direction: column; }
+      .btn-primary { width: 100%; }
+      .api-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()" title="থিম পরিবর্তন">🌙</button>
+
+  <div class="container">
+    <header>
+      <div class="logo">☸</div>
+      <h1>ত্রিপিটক সার্চ</h1>
+      <p class="subtitle">পবিত্র ত্রিপিটক থেকে রেফারেন্সসহ শুদ্ধ বাংলায় উত্তর খুঁজুন</p>
+    </header>
+
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <input type="text" id="query" placeholder="আপনার প্রশ্ন লিখুন... যেমন: চার আর্যসত্য কী? অথবা ধম্মপদ ১" 
+               onkeypress="if(event.key==='Enter') search()" />
+        <button class="btn-primary" id="searchBtn" onclick="search()">খুঁজুন</button>
+      </div>
+
+      <div class="quick-links">
+        <button onclick="setQuery('চার আর্যসত্য')">চার আর্যসত্য</button>
+        <button onclick="setQuery('অষ্টমার্গ')">অষ্টমার্গ</button>
+        <button onclick="setQuery('পঞ্চশীল')">পঞ্চশীল</button>
+        <button onclick="setQuery('অনাত্তা')">অনাত্তা</button>
+        <button onclick="setQuery('ধম্মচক্কপ্পবত্তন সুত্ত')">ধম্মচক্ক</button>
+        <button onclick="setQuery('মৈত্রী ভাবনা')">মৈত্রী</button>
+      </div>
+
+      <!-- API Key Section -->
+      <div class="api-section">
+        <label>
+          AI API Key 
+          <span id="apiStatus" class="status-badge off">বন্ধ</span>
+        </label>
+        <div class="api-row">
+          <input type="password" id="apiKey" placeholder="Groq বা OpenAI API Key এখানে দিন (ঐচ্ছিক)" />
+          <select id="provider" style="padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:inherit;">
+            <option value="groq">Groq (ফ্রি)</option>
+            <option value="openai">OpenAI</option>
+          </select>
+        </div>
+        <p class="api-hint">
+          API Key দিলে সরাসরি উত্তর আসবে। 
+          <a href="https://console.groq.com" target="_blank">Groq থেকে ফ্রি Key নিন →</a>
+          (Key শুধু আপনার ব্রাউজারে সেভ হয়, কোথাও পাঠানো হয় না)
+        </p>
+      </div>
+    </div>
+
+    <div id="results" class="results">
+      <!-- Results will appear here -->
+    </div>
+
+    <div class="resources">
+      <h2>📚 গুরুত্বপূর্ণ সম্পদ</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <a href="https://suttacentral.net" target="_blank">SuttaCentral</a>
+          <span>সবচেয়ে নির্ভরযোগ্য অনলাইন ত্রিপিটক (পালি + ইংরেজি)</span>
+        </div>
+        <div class="resource-card">
+          <a href="https://tipitaka.org" target="_blank">tipitaka.org</a>
+          <span>VRI-এর সম্পূর্ণ পালি ত্রিপিটক (অনেক স্ক্রিপ্টে)</span>
+        </div>
+        <div class="resource-card">
+          <a href="https://www.sariputta.com/tipitaka/bangla" target="_blank">বাংলা ত্রিপিটক PDF</a>
+          <span>সরিপুত্ত সাইটে বাংলা অনুবাদসমূহ</span>
+        </div>
+        <div class="resource-card">
+          <a href="https://play.google.com/store/apps/details?id=com.tipi.ptptv1" target="_blank">পবিত্র ত্রিপিটক অ্যাপ</a>
+          <span>বাংলায় সম্পূর্ণ ত্রিপিটক (অ্যান্ড্রয়েড)</span>
+        </div>
+        <div class="resource-card">
+          <a href="https://archive.org/details/by-1_20200724" target="_blank">আর্কাইভ.অর্গ</a>
+          <span>বাংলা ত্রিপিটকের অনেক খণ্ড PDF</span>
+        </div>
+        <div class="resource-card">
+          <a href="https://www.accesstoinsight.org" target="_blank">Access to Insight</a>
+          <span>ইংরেজি সুত্তের চমৎকার সংগ্রহ</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>এই সাইটটি শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে তৈরি। উত্তরগুলো ত্রিপিটক ও নির্ভরযোগ্য উৎস থেকে নেওয়া উচিত।</p>
+      <p style="margin-top:8px;">নমো তস্স ভগবতো অরহতো সম্মাসম্বুদ্ধস্স ☸</p>
+    </footer>
+  </div>
+
+  <script>
+    // ========== Theme ==========
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    // ========== API Key Persistence ==========
+    const apiKeyInput = document.getElementById('apiKey');
+    const providerSelect = document.getElementById('provider');
+    const apiStatus = document.getElementById('apiStatus');
+
+    // Load saved key
+    const savedKey = localStorage.getItem('tipitaka_api_key') || '';
+    const savedProvider = localStorage.getItem('tipitaka_provider') || 'groq';
+    apiKeyInput.value = savedKey;
+    providerSelect.value = savedProvider;
+    updateApiStatus();
+
+    apiKeyInput.addEventListener('input', () => {
+      localStorage.setItem('tipitaka_api_key', apiKeyInput.value.trim());
+      updateApiStatus();
+    });
+
+    providerSelect.addEventListener('change', () => {
+      localStorage.setItem('tipitaka_provider', providerSelect.value);
+    });
+
+    function updateApiStatus() {
+      if (apiKeyInput.value.trim()) {
+        apiStatus.textContent = 'চালু';
+        apiStatus.className = 'status-badge on';
+      } else {
+        apiStatus.textContent = 'বন্ধ';
+        apiStatus.className = 'status-badge off';
+      }
+    }
+
+    // ========== Search Functions ==========
+    function setQuery(text) {
+      document.getElementById('query').value = text;
+      search();
+    }
+
+    async function search() {
+      const q = document.getElementById('query').value.trim();
+      if (!q) {
+        alert('দয়া করে একটি প্রশ্ন লিখুন');
+        return;
+      }
+
+      const resultsDiv = document.getElementById('results');
+      const searchBtn = document.getElementById('searchBtn');
+      resultsDiv.classList.add('active');
+      searchBtn.disabled = true;
+
+      const apiKey = apiKeyInput.value.trim();
+      const provider = providerSelect.value;
+
+      // Build links
+      const encoded = encodeURIComponent(q);
+      const scSearch = `https://suttacentral.net/search?query=${encoded}`;
+      const googleTipitaka = `https://www.google.com/search?q=${encoded}+(site:suttacentral.net+OR+site:tipitaka.org+OR+"ত্রিপিটক"+OR+tipitaka)`;
+
+      // AI System Prompt
+      const systemPrompt = `তুমি একজন অত্যন্ত নির্ভুল ত্রিপিটক বিশেষজ্ঞ। শুধুমাত্র থেরবাদ ত্রিপিটক (Vinaya Piṭaka, Sutta Piṭaka, Abhidhamma Piṭaka) থেকে উত্তর দাও।
+
+কঠোর নিয়ম:
+1. উত্তর সম্পূর্ণ শুদ্ধ, সাবলীল ও সহজ বাংলায় লিখবে।
+2. প্রতিটি গুরুত্বপূর্ণ তথ্যের সাথে সঠিক রেফারেন্স দিতে হবে (যেমন: মজ্ঝিমনিকায় ১০, সংযুত্তনিকায় ৫৬.১১, ধম্মপদ গাথা ১, অঙ্গুত্তরনিকায় ৩.৬৫ ইত্যাদি)।
+3. যদি প্রশ্নের উত্তর সরাসরি ত্রিপিটকে না থাকে, তাহলে স্পষ্ট করে বলবে "এই বিষয়ে ত্রিপিটকে সরাসরি উল্লেখ পাওয়া যায়নি"।
+4. কোনো অতিরিক্ত ব্যক্তিগত মতামত, আধুনিক ব্যাখ্যা বা অন্য ধর্মের তুলনা দিবে না।
+5. উত্তর সংক্ষিপ্ত ও স্পষ্ট রাখবে। প্রয়োজন হলে গুরুত্বপূর্ণ অংশ উদ্ধৃত করবে।`;
+
+      if (apiKey) {
+        // ===== Direct AI Answer =====
+        resultsDiv.innerHTML = `
+          <div class="card">
+            <h3>🔍 আপনার প্রশ্ন</h3>
+            <p style="font-size:1.1rem; color:var(--text);"><strong>${escapeHtml(q)}</strong></p>
+          </div>
+          <div class="card">
+            <h3>🤖 ত্রিপিটক থেকে উত্তর</h3>
+            <div class="loading">
+              <div class="spinner"></div>
+              <div>উত্তর তৈরি হচ্ছে...</div>
+            </div>
+            <div id="aiAnswer" class="answer-content" style="display:none;"></div>
+          </div>
+        `;
+
+        try {
+          const answer = await callAI(provider, apiKey, systemPrompt, q);
+          document.querySelector('.loading').style.display = 'none';
+          const answerEl = document.getElementById('aiAnswer');
+          answerEl.style.display = 'block';
+          answerEl.innerHTML = formatAnswer(answer);
+        } catch (err) {
+          document.querySelector('.loading').innerHTML = `
+            <div class="error">
+              <strong>ত্রুটি:</strong> ${escapeHtml(err.message)}<br>
+              API Key সঠিক কিনা চেক করুন অথবা পরে আবার চেষ্টা করুন।
+            </div>
+          `;
+        }
+
+        // Always show links below
+        resultsDiv.innerHTML += `
+          <div class="card">
+            <h3>📖 আরও খুঁজুন</h3>
+            <ul class="link-list">
+              <li><a href="${scSearch}" target="_blank">SuttaCentral-এ সার্চ করুন →</a></li>
+              <li><a href="${googleTipitaka}" target="_blank">Google-এ ত্রিপিটক সীমিত সার্চ →</a></li>
+              <li><a href="https://tipitaka.org" target="_blank">tipitaka.org (পালি মূল পাঠ) →</a></li>
+            </ul>
+          </div>
+        `;
+      } else {
+        // ===== No API Key → Show Prompt =====
+        const aiPrompt = `${systemPrompt}
+
+প্রশ্ন: ${q}`;
+
+        resultsDiv.innerHTML = `
+          <div class="card">
+            <h3>🔍 আপনার প্রশ্ন</h3>
+            <p style="font-size:1.1rem; color:var(--text);"><strong>${escapeHtml(q)}</strong></p>
+          </div>
+
+          <div class="card">
+            <h3>🤖 AI দিয়ে উত্তর নিন</h3>
+            <p>API Key না দিলে নিচের প্রম্পটটি কপি করে <strong>Grok</strong> বা <strong>ChatGPT</strong>-এ পেস্ট করুন।</p>
+            <div class="prompt-box">
+              <button class="copy-btn" onclick="copyPrompt()">কপি করুন</button>
+              <div id="prompt-text">${escapeHtml(aiPrompt).replace(/\n/g, '<br>')}</div>
+            </div>
+            <p style="margin-top:12px; font-size:0.9rem; color:var(--muted);">
+              অথবা উপরে <strong>Groq API Key</strong> দিলে সরাসরি এখানেই উত্তর আসবে।
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>📖 সরাসরি খুঁজুন</h3>
+            <ul class="link-list">
+              <li><a href="${scSearch}" target="_blank">SuttaCentral-এ সার্চ করুন →</a></li>
+              <li><a href="${googleTipitaka}" target="_blank">Google-এ ত্রিপিটক সীমিত সার্চ →</a></li>
+              <li><a href="https://tipitaka.org" target="_blank">tipitaka.org (পালি মূল পাঠ) →</a></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>💡 টিপস</h3>
+            <ul style="padding-left: 20px; color: var(--muted);">
+              <li>সুনির্দিষ্ট প্রশ্ন করলে ভালো উত্তর পাবেন</li>
+              <li>সুত্তের নাম বা নম্বর জানলে সরাসরি লিখুন (যেমন: MN 10, SN 56.11)</li>
+              <li>বাংলা ত্রিপিটকের জন্য উপরে দেওয়া PDF ও অ্যাপ লিংক ব্যবহার করুন</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      searchBtn.disabled = false;
+    }
+
+    // ========== AI Call ==========
+    async function callAI(provider, apiKey, systemPrompt, userQuestion) {
+      let url, model, headers;
+
+      if (provider === 'groq') {
+        url = 'https://api.groq.com/openai/v1/chat/completions';
+        model = 'llama-3.3-70b-versatile';
+        headers = {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        };
+      } else {
+        url = 'https://api.openai.com/v1/chat/completions';
+        model = 'gpt-4o-mini';
+        headers = {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        };
+      }
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userQuestion }
+          ],
+          temperature: 0.3,
+          max_tokens: 1500
+        })
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error?.message || `API Error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data.choices[0].message.content;
+    }
+
+    // ========== Helpers ==========
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function formatAnswer(text) {
+      // Simple formatting: bold references, preserve line breaks
+      let html = escapeHtml(text);
+      html = html.replace(/\n/g, '<br>');
+      // Highlight common reference patterns
+      html = html.replace(/(মজ্ঝিমনিকায়|সংযুত্তনিকায়|অঙ্গুত্তরনিকায়|দীর্ঘনিকায়|ধম্মপদ|বিনয়|অভিধম্ম)[^\s<]*/gi, '<strong>$&</strong>');
+      html = html.replace(/(MN|SN|AN|DN|Dhp|Vin|Abhidh)\s*[\d\.]+/gi, '<strong>$&</strong>');
+      return html;
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('prompt-text').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'কপি হয়েছে!';
+        btn.style.background = 'var(--success)';
+        setTimeout(() => {
+          btn.textContent = 'কপি করুন';
+          btn.style.background = 'var(--primary)';
+        }, 2000);
+      });
+    }
+
+    // Focus on load
+    document.getElementById('query').focus();
+  </script>
+</body>
+</html>
